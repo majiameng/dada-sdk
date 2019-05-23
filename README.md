@@ -13,6 +13,21 @@ composer require tinymeng/dada dev-master -vvv
 
 由于让开发者友好的使用,逻辑中多处抛出异常,请做好捕捉异常以免程序报错
 
+
+### 目录结构
+
+```
+.
+├── example                          代码源文件目录
+│   └── Dada.php                    达达逻辑处理实例
+├── src                              代码源文件目录
+│   └── DadaSdk.php                 达达SDK实例类
+├── composer.json                    composer文件
+├── LICENSE                          MIT License
+└── README.md                        说明文件
+```
+
+
 ### 配置文件样例
 
 #### 达达配置
