@@ -119,6 +119,7 @@ class DadaSdk
 
     /** 新增订单
      * @return bool
+     * @throws \Exception
      */
     public function addOrder($data)
     {
@@ -132,15 +133,18 @@ class DadaSdk
      * 订单详情查询
      * @param $data
      * @return mixed
+     * @throws \Exception
      */
     public function statusQuery($data){
         return self::getResult($this->API_STATUS_QUERY,$data);
 
     }
+
     /**
      * 重新发布订单
      * 在调用新增订单后，订单被取消、过期或者投递异常的情况下，调用此接口，可以在达达平台重新发布订单。
      * @return bool
+     * @throws \Exception
      */
     public function reAddOrder($data)
     {
@@ -193,6 +197,7 @@ class DadaSdk
      * 取消订单(线上环境)
      * 在订单待接单或待取货情况下，调用此接口可取消订单。注意：订单接单后1-15分钟取消订单，会扣除相应费用补贴给接单达达
      * @return bool
+     * @throws \Exception
      */
     public function formalCancel($data)
     {
@@ -201,10 +206,12 @@ class DadaSdk
 //        $data['cancel_reason'] = "";
         return self::getResult($this->API_FORMALCANCEL,$data);
     }
+
     /**
      * 增加小费
      * 可以对待接单状态的订单增加小费。需要注意：订单的小费，以最新一次加小费动作的金额为准，故下一次增加小费额必须大于上一次小费额。
      * @return bool
+     * @throws \Exception
      */
     public function addTip($data)
     {
@@ -214,9 +221,11 @@ class DadaSdk
 //        $data['info'] = '';
         return self::getResult($this->API_ADDTIP,$data);
     }
+
     /**
      * 新增门店
      * @return bool
+     * @throws \Exception
      */
     public function addShop($data)
     {
@@ -234,6 +243,14 @@ class DadaSdk
 //        $data['password'] = '';
         return self::getResult($this->API_SHOP_ADD,$data);
     }
+
+    /**
+     * Name: addMerchant
+     * Author: Tinymeng <666@majiameng.com>
+     * @param $data
+     * @return mixed
+     * @throws \Exception
+     */
     public function addMerchant($data)
     {
 //        $data['mobile'] = '';
@@ -254,45 +271,55 @@ class DadaSdk
         $res = self::getResult($this->API_CANCELREASONS);
         return $res;
     }
+
     /**
      * 接单(仅在测试环境供调试使用)
      * @return bool
+     * @throws \Exception
      */
     public function acceptOrder($data)
     {
 //        $data['order_id'] = '12321';
         return self::getResult($this->API_ACCEPTORDER,$data);
     }
+
     /**
      * 完成取货(仅在测试环境供调试使用)
      * @return bool
+     * @throws \Exception
      */
     public function fetchOrder($data)
     {
 //        $data['order_id'] = '12321';
         return self::getResult($this->API_FETCHORDER,$data);
     }
+
     /**
      * 完成订单(仅在测试环境供调试使用)
      * @return bool
+     * @throws \Exception
      */
     public function finishOrder($data)
     {
 //        $data['order_id'] = '12321';
         return self::getResult($this->API_FINISHORDER,$data);
     }
+
     /**
      * 取消订单(仅在测试环境供调试使用)
      * @return bool
+     * @throws \Exception
      */
     public function cancelOrder($data)
     {
 //        $data['order_id'] = '12321';
         return self::getResult($this->API_CANCELORDER,$data);
     }
+
     /**
      * 订单过期(仅在测试环境供调试使用)
      * @return bool
+     * @throws \Exception
      */
     public function expireOrder($data)
     {
@@ -310,8 +337,10 @@ class DadaSdk
             $arr = json_decode($content,true);
         }
     }
+
     /** 获取城市信息
      * @return bool
+     * @throws \Exception
      */
     public function cityCode(){
         return self::getResult($this->API_CITY_LIST);
@@ -385,10 +414,6 @@ class DadaSdk
             if($result){
                 $result = json_decode($result,true);
                 return $result;
-//            if($result['status'] == 'success'){
-//                return $result['result'];
-//            }
-//            throw new \Exception("哒哒请求响应错误,返回数据：" . var_export($result));
             }
         }catch (\Exception $exception){
             throw new \Exception("哒哒请求出错!");
