@@ -15,12 +15,8 @@ composer require tinymeng/dada dev-master -vvv
 
 ### 配置文件样例
 
-#### 1.微信
-
-> 微信会返回特有的unionid字段
-
+#### 达达配置
 ```
-    //达达配置
     'dada'=>[
         'app_key'=>'dada41f2c**********',
         'app_secret'=>'8eadb43e4669999***********',
